@@ -97,7 +97,7 @@
    ![screen](./screenshots/kube/step13.png)
    ![screen](./screenshots/kube/step14.png)
 
-8. On **control** run 
+8. On **control** node run 
     ```
     kubectl get nodes
    ```
