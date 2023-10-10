@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: app-tst
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: leerndregistryname.azurecr.io/fe_devops:03a9139f02166ef9c07f7b54052e2bd4c8e2a70f
+          ports:
+            - containerPort: 4200
+      imagePullSecrets:
+        - name: acr-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: app-tst
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 4200
+      targetPort: 80
